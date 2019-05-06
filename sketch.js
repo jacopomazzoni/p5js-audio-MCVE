@@ -77,12 +77,11 @@ function mouseClicked() {
       if (! song.isPlaying() ) {
         song.play();
       }
+    } else {
+      start();
     }
     slide++;
   } else if (slide == 1 ) {
     slide=0;
-    if (iphone) {
-      start();
-    }
   }
 }
