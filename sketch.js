@@ -35,7 +35,8 @@ function setup() {
     isPlaying = false;
 
     //touch fix
-    document.getElementsByTagName("canvas")[0].addEventListener("touchstart", mouseClicked, false);
+    var el = document.getElementsByTagName("canvas")[0];
+    el.addEventListener("touchstart", mouseClicked, false);
   }
   // ignore this
   textSize(32);
