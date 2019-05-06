@@ -2,7 +2,6 @@ let song;
 let slide;
 var isIphone;
 var isPlaying;
-var myCanvas;
 
 var start = function()
 {
@@ -60,7 +59,7 @@ function draw() {
 }
 
 function mouseClicked() {
-
+console.log("touch");
   if (slide == 0) {
 
     if (isIphone) {
