@@ -14,7 +14,7 @@ var start = function()
 const songP = 'assets/telephone_ring.mp3';
 
 function preload () {
-  isIphone = window.navigator.userAgent.match(/iPad/i) || window.navigator.userAgent.match(/isIphone/i);
+  isIphone = window.navigator.userAgent.match(/iPad/i) || window.navigator.userAgent.match(/iphone/i);
 
   if (isIphone) {
     // AUDIO FIX
