@@ -1,26 +1,23 @@
 let song;
 let slide;
-var iphone;
-var played;
+var isIphone;
+var isPlaying;
 var myCanvas;
 
 var start = function()
 {
-  if(played)
-    return;
-  played = true
-  song.play();
-  //myCanvas.onclick = '';
+  if(!isPlaying) {
+    isPlaying = true;
+    song.play();
+  }
 }
 
-var played;
-var myCanvas;
 const songP = 'assets/telephone_ring.mp3';
 
 function preload () {
-  iphone = window.navigator.userAgent.match(/iPad/i) || window.navigator.userAgent.match(/iPhone/i);
+  isIphone = window.navigator.userAgent.match(/iPad/i) || window.navigator.userAgent.match(/isIphone/i);
 
-  if (iphone) {
+  if (isIphone) {
     // AUDIO FIX
     song = new Audio(songP);
 
@@ -32,24 +29,15 @@ function preload () {
 
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
-  //target = document.querySelector('canvas').getContext('2d');
-  //target = document.getElementById('defaultCanvas0').getContext('2d');
   slide = 0;
-  if (iphone) {
-   // iPad or iPhone
-
+  if (isIphone) {
     // AUDIO FIX
-    myCanvas = document.getElementsByTagName("canvas")[0];
-    played = false;
-    /*myCanvas.onclick = function()
-    {
-      start()
-    }
-    myCanvas.addEventListener('touchstart', start, false)*/
-    //touch fix
-    myCanvas.addEventListener("touchstart", mouseClicked, false);
-  }
+    isPlaying = false;
 
+    //touch fix
+    document.getElementsByTagName("canvas")[0].addEventListener("touchstart", mouseClicked, false);
+  }
+  // ignore this
   textSize(32);
   textAlign(CENTER, CENTER);
 }
@@ -73,14 +61,15 @@ function draw() {
 function mouseClicked() {
 
   if (slide == 0) {
-    if (!iphone) {
-      if (! song.isPlaying() ) {
+
+    if (isIphone) {
+      start();
+    } else {
+      if ( !song.isPlaying() ) {
         song.play();
       }
-    } else {
-      start();
     }
-    slide++;
+    slide = 1;
   } else if (slide == 1 ) {
     slide=0;
   }
